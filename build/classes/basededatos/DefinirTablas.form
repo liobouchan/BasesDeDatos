@@ -155,11 +155,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Otro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarOtroAtributoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonSalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cerrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonAgregarAtributo">
       <Properties>

@@ -72,8 +72,18 @@ public class DefinirTablas extends javax.swing.JFrame {
         jLabel5.setText("Tamaño:");
 
         botonAgregarOtroAtributo.setText("Agregar Otro");
+        botonAgregarOtroAtributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarOtroAtributoActionPerformed(evt);
+            }
+        });
 
         botonSalir.setText("Cerrar");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         botonAgregarAtributo.setText("Agregar");
         botonAgregarAtributo.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +201,19 @@ public class DefinirTablas extends javax.swing.JFrame {
             Logger.getLogger(DefinirTablas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonAgregarAtributoActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        System.exit(0);
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonAgregarOtroAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarOtroAtributoActionPerformed
+        // TODO add your handling code here:
+        textNombreDelAtributo.setText("");
+        textTamañoDelDato.setText("");
+        textTipoDeDato.setText("");
+    }//GEN-LAST:event_botonAgregarOtroAtributoActionPerformed
 
     /**
      * @param args the command line arguments
