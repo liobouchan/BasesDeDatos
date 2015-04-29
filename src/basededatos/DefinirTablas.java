@@ -6,6 +6,7 @@
 package basededatos;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ public class DefinirTablas extends javax.swing.JFrame {
     public DefinirTablas() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,6 +76,11 @@ public class DefinirTablas extends javax.swing.JFrame {
         botonSalir.setText("Cerrar");
 
         botonAgregarAtributo.setText("Agregar");
+        botonAgregarAtributo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarAtributoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,6 +171,26 @@ public class DefinirTablas extends javax.swing.JFrame {
             System.out.println("El Archivo"+nuevoArchivo+" no se ha podido crear");
         }
     }//GEN-LAST:event_botonAsignarNombreTablaActionPerformed
+
+    private void botonAgregarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarAtributoActionPerformed
+        // TODO add your handling code here:
+        String atributo;
+        String tipoDeDato;
+        String tamañoDelDato;
+        
+        atributo = String.valueOf(textNombreDelAtributo.getText())+"@";
+        tipoDeDato = String.valueOf(textTipoDeDato.getText())+"@";
+        tamañoDelDato = String.valueOf(textTamañoDelDato.getText())+"@@";
+        
+        try {
+            File archivo = new File("/home/lio/Code/BasesDeDatos/"+nombreDeTabla+".txt");
+            FileWriter escribir = new FileWriter(archivo, true);
+            escribir.write(atributo+tipoDeDato+tamañoDelDato);
+            escribir.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DefinirTablas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonAgregarAtributoActionPerformed
 
     /**
      * @param args the command line arguments

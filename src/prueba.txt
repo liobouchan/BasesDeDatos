@@ -1,1 +1,14 @@
-holaholaholaholaholahola9
+//Escribimos en el archivo con el metodo write
+escribir.write(saludo);
+
+//Cerramos la conexion
+escribir.close();
+}
+
+//Si existe un problema al escribir cae aqui
+catch(Exception e)
+{
+System.out.println("Error al escribir");
+}
+}
+} 
