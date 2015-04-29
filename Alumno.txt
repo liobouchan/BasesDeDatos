@@ -1,1 +1,1 @@
-Nombre@String@10@@Nombre@String@10@@Nombre@String@10@@Nombre@String@10@@Nombre@String@10@@
+Nombre@String@10@Boleta@Int@20@Telefono@Int@1@
