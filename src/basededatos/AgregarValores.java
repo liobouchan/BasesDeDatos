@@ -6,12 +6,17 @@
 package basededatos;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -38,23 +43,28 @@ public class AgregarValores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        botonCargar = new javax.swing.JButton();
+        botonGuardarDatos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textDatos = new javax.swing.JTextArea();
+        botonLeer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("jLabel3");
-
-        botonCargar.setText("jButton1");
-        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarDatos.setText("Agregar");
+        botonGuardarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCargarActionPerformed(evt);
+                botonGuardarDatosActionPerformed(evt);
+            }
+        });
+
+        textDatos.setColumns(20);
+        textDatos.setRows(5);
+        jScrollPane1.setViewportView(textDatos);
+
+        botonLeer.setText("Leer");
+        botonLeer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLeerActionPerformed(evt);
             }
         });
 
@@ -65,36 +75,33 @@ public class AgregarValores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
-                .addComponent(botonCargar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonLeer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonGuardarDatos))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                .addComponent(botonCargar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardarDatos)
+                    .addComponent(botonLeer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+    private void botonGuardarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarDatosActionPerformed
         String primerLinea;
         String palabraActual;
         int tokens=0;
+        int atributoCounter = 0;
 
         try {
             // TODO add your handling code here:
@@ -105,10 +112,20 @@ public class AgregarValores extends javax.swing.JFrame {
             StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
             while (stringTokenizer.hasMoreTokens()){
                 if(tokens == 0){
+                    String obtenerValor;
                     palabraActual = stringTokenizer.nextToken();
                     atributo = palabraActual;
-                    System.out.println("Atributo"+atributo);
-                    
+                    System.out.println("Escribre valor para " +atributo);
+                    Scanner leer = new Scanner(System.in);
+                    obtenerValor = String.valueOf(leer.nextLine())+"@";
+                    File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
+                    FileWriter escribir = new FileWriter(archivo, true);
+                    escribir.write(obtenerValor);
+                    escribir.close();
+                    //System.out.println("valor de "+atributo+" Es "+obtenerValor);
+                    //String s1 = "labelAtributo"+atributoCounter;
+                    //System.out.println("Atributo"+atributo+atributoCounter);
+                    atributoCounter ++;
                 }if(tokens == 1){
                     palabraActual = stringTokenizer.nextToken();
                     tipo = palabraActual;
@@ -120,11 +137,7 @@ public class AgregarValores extends javax.swing.JFrame {
                     tokens = -1;
                 }
                 tokens++;
-
-                
-
             //System.out.println ("    Palabra " + tokens + " es: " + s2);
-
         }
             
         } catch (FileNotFoundException ex) {
@@ -132,7 +145,44 @@ public class AgregarValores extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonCargarActionPerformed
+    }//GEN-LAST:event_botonGuardarDatosActionPerformed
+
+    private void botonLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLeerActionPerformed
+        // TODO add your handling code here:
+        String primerLinea;
+        String palabraActual;
+        String contenidoDelArreglo = "";
+        int tokens=0;
+
+
+        try {
+            // TODO add your handling code here:
+            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt"));
+            primerLinea = bufferedReader.readLine();
+            
+            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
+            String[] datos = new String[100000];
+            while (stringTokenizer.hasMoreTokens()){
+                palabraActual = String.valueOf(stringTokenizer.nextToken());
+                datos[tokens] = palabraActual;
+                tokens++;
+            //System.out.println ("    Palabra " + tokens + " es: " + s2);
+            }
+            for(int i=0 ; i<=tokens; i++){
+            if(datos[i] != null){
+                contenidoDelArreglo += datos[i] + ",";
+                textDatos.setText(contenidoDelArreglo);
+                System.out.println(datos[i]);
+            }
+        }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonLeerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,9 +220,9 @@ public class AgregarValores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCargar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton botonGuardarDatos;
+    private javax.swing.JButton botonLeer;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textDatos;
     // End of variables declaration//GEN-END:variables
 }
