@@ -169,12 +169,12 @@ public class AgregarValores extends javax.swing.JFrame {
             //System.out.println ("    Palabra " + tokens + " es: " + s2);
             }
             for(int i=0 ; i<=tokens; i++){
-            if(datos[i] != null){
-                contenidoDelArreglo += datos[i] + ",";
-                textDatos.setText(contenidoDelArreglo);
-                System.out.println(datos[i]);
+                if(datos[i] != null){
+                    contenidoDelArreglo += datos[i] + ",";
+                    textDatos.setText(contenidoDelArreglo);
+                    System.out.println(datos[i]);
+                }
             }
-        }
             
             
         } catch (FileNotFoundException ex) {
