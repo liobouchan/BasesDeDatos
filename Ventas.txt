@@ -1,0 +1,1 @@
+IdVendedor@int@10@@CodigoProd@String@10@@NumProductos@int@10@@Fecha@Date@10@@

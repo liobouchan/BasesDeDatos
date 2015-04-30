@@ -98,14 +98,14 @@ public class AgregarValores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarDatosActionPerformed
-        String primerLinea;
+        String primerLinea,primerLinea2,primerLinea3;
         String palabraActual;
         int tokens=0;
         int atributoCounter = 0;
 
         try {
             // TODO add your handling code here:
-            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Alumno.txt"));
+            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Articulo.txt"));
 
             primerLinea = bufferedReader.readLine();
             
@@ -139,7 +139,72 @@ public class AgregarValores extends javax.swing.JFrame {
                 tokens++;
             //System.out.println ("    Palabra " + tokens + " es: " + s2);
         }
-            
+            BufferedReader bufferedReader2 = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Vendedor.txt"));
+
+            primerLinea2 = bufferedReader2.readLine();
+            StringTokenizer stringTokenizer2 = new StringTokenizer(primerLinea2, "@");
+            while (stringTokenizer2.hasMoreTokens()){
+                if(tokens == 0){
+                    String obtenerValor;
+                    palabraActual = stringTokenizer2.nextToken();
+                    atributo = palabraActual;
+                    System.out.println("Escribre valor para " +atributo);
+                    Scanner leer = new Scanner(System.in);
+                    obtenerValor = String.valueOf(leer.nextLine())+"@";
+                    File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
+                    FileWriter escribir = new FileWriter(archivo, true);
+                    escribir.write(obtenerValor);
+                    escribir.close();
+                    //System.out.println("valor de "+atributo+" Es "+obtenerValor);
+                    //String s1 = "labelAtributo"+atributoCounter;
+                    //System.out.println("Atributo"+atributo+atributoCounter);
+                    atributoCounter ++;
+                }if(tokens == 1){
+                    palabraActual = stringTokenizer2.nextToken();
+                    tipo = palabraActual;
+                    System.out.println("Tipo"+tipo);
+                }if(tokens == 2){
+                    palabraActual = stringTokenizer2.nextToken();
+                    tamaño = palabraActual;
+                    System.out.println("Tam"+tamaño);
+                    tokens = -1;
+                }
+                tokens++;
+            //System.out.println ("    Palabra " + tokens + " es: " + s2);
+            }
+            BufferedReader bufferedReader3 = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Ventas.txt"));
+
+            primerLinea3 = bufferedReader3.readLine();
+            StringTokenizer stringTokenizer3 = new StringTokenizer(primerLinea3, "@");
+            while (stringTokenizer3.hasMoreTokens()){
+                if(tokens == 0){
+                    String obtenerValor;
+                    palabraActual = stringTokenizer3.nextToken();
+                    atributo = palabraActual;
+                    System.out.println("Escribre valor para " +atributo);
+                    Scanner leer = new Scanner(System.in);
+                    obtenerValor = String.valueOf(leer.nextLine())+"@";
+                    File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
+                    FileWriter escribir = new FileWriter(archivo, true);
+                    escribir.write(obtenerValor);
+                    escribir.close();
+                    //System.out.println("valor de "+atributo+" Es "+obtenerValor);
+                    //String s1 = "labelAtributo"+atributoCounter;
+                    //System.out.println("Atributo"+atributo+atributoCounter);
+                    atributoCounter ++;
+                }if(tokens == 1){
+                    palabraActual = stringTokenizer3.nextToken();
+                    tipo = palabraActual;
+                    System.out.println("Tipo"+tipo);
+                }if(tokens == 2){
+                    palabraActual = stringTokenizer3.nextToken();
+                    tamaño = palabraActual;
+                    System.out.println("Tam"+tamaño);
+                    tokens = -1;
+                }
+                tokens++;
+            //System.out.println ("    Palabra " + tokens + " es: " + s2);
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

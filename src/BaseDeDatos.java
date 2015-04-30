@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -36,7 +37,6 @@ public class BaseDeDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         DefinirTablas definir = new DefinirTablas();
         definir.setVisible(true);
         final JFrame frame = new JFrame("Test");
@@ -66,27 +66,33 @@ public class BaseDeDatos {
                                     palabraActual = stringTokenizer.nextToken();
                                     atributo = palabraActual;
                                     JLabel label = new JLabel(atributo);
+                                    /*
                                     JTextField textField[] = new JTextField[n];
                                     textField[atributoCounter] = new JTextField();
                                     textField[atributoCounter].setText(atributo);
+                                    */
+                                    JTextField textField = new JTextField(atributo);
+                                    textField.setName(atributo);
+                                    System.out.println(textField.getName());
                                     frame.add(label);
-                                    frame.add(textField[atributoCounter]);
+                                    //frame.add(textField[atributoCounter]);
+                                    frame.add(textField);
                                     frame.revalidate();
                                     frame.repaint();
                                     frame.pack();
 
-                                    String s1 = "labelAtributo"+atributoCounter;
-                                    System.out.println("Atributo"+atributo+atributoCounter);
-                                    atributoCounter ++;
+                                    //String s1 = "labelAtributo"+atributoCounter;
+                                    //System.out.println("Atributo"+atributo+atributoCounter);
+                                    //atributoCounter ++;
                     
                                 }if(tokens == 1){
                                     palabraActual = stringTokenizer.nextToken();
                                     tipo = palabraActual;
-                                    System.out.println("Tipo"+tipo);
+                                    //System.out.println("Tipo"+tipo);
                                 }if(tokens == 2){
                                     palabraActual = stringTokenizer.nextToken();
                                     tamaño = palabraActual;
-                                    System.out.println("Tam"+tamaño);
+                                    //System.out.println("Tam"+tamaño);
                                     tokens = -1;
                                 }
                                 tokens++;
@@ -126,10 +132,15 @@ public class BaseDeDatos {
                                 if(tokens == 0){
                                     palabraActual = stringTokenizer.nextToken();
                                     atributo = palabraActual;
-                                    JTextField textField[] = new JTextField[n];
-                                    String s1 = String.valueOf(textField[atributoCounter].getText());
+                                    JTextField textField = new JTextField();
+                                    textField.setName(atributo);
+                                    String s1 = String.valueOf(textField.getText())+"@";
                                     System.out.println("Atributo"+atributo+atributoCounter);
                                     System.out.println(s1);
+                                    File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
+                                    FileWriter escribir = new FileWriter(archivo, true);
+                                    escribir.write(s1);
+                                    escribir.close();
                                     atributoCounter ++;
                     
                                 }if(tokens == 1){

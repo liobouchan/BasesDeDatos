@@ -1,1 +1,1 @@
-Nombre@String@10@Boleta@Int@20@Telefono@Int@1@
+leo@23@1@leonardo@23@5@Pancho@1@2

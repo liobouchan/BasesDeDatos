@@ -1,0 +1,1 @@
+Id@int@20@@Nombre@String@30@@ApellidoP@String@30@@ApellidoM@String@30@@idDepto@int@10@@

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/**./
  *
  * @author lio
  */
@@ -166,7 +166,11 @@ public class DefinirTablas extends javax.swing.JFrame {
     private void botonAsignarNombreTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAsignarNombreTablaActionPerformed
         // TODO add your handling code here:
         String nuevoArchivo;
-        
+        /*
+        nombreDeTabla = String.valueOf(textNombreTabla.getText());
+        manejoDeArchivos manejo = new manejoDeArchivos();
+        manejo.asignarCrearTabla(nombreDeTabla, labelNombreDeLaTabla);
+        */
         nombreDeTabla = String.valueOf(textNombreTabla.getText());
         labelNombreDeLaTabla.setText(nombreDeTabla);
         nuevoArchivo = "/home/lio/Code/BasesDeDatos/"+nombreDeTabla+".txt";
