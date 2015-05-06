@@ -20,6 +20,7 @@ import javax.swing.JLabel;
  * @author lio
  */
 public class manejoDeArchivos {
+    
     public void asignarCrearTabla(String nombreTabla, JLabel labelTabla){
         
         String nuevoArchivo;
