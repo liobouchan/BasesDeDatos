@@ -166,24 +166,9 @@ public class DefinirTablas extends javax.swing.JFrame {
     private void botonAsignarNombreTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAsignarNombreTablaActionPerformed
         // TODO add your handling code here:
         String nuevoArchivo;
-        /*
         nombreDeTabla = String.valueOf(textNombreTabla.getText());
         manejoDeArchivos manejo = new manejoDeArchivos();
         manejo.asignarCrearTabla(nombreDeTabla, labelNombreDeLaTabla);
-        */
-        nombreDeTabla = String.valueOf(textNombreTabla.getText());
-        labelNombreDeLaTabla.setText(nombreDeTabla);
-        nuevoArchivo = "/home/lio/Code/BasesDeDatos/"+nombreDeTabla+".txt";
-        File archivo = new File(nuevoArchivo);
-        
-        try{
-            if(archivo.createNewFile()){
-                System.out.println("Archivo Creado Con Éxito");
-            }
-        }catch(IOException ex){
-            Logger.getLogger(DefinirTablas.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("El Archivo"+nuevoArchivo+" no se ha podido crear");
-        }
     }//GEN-LAST:event_botonAsignarNombreTablaActionPerformed
 
     private void botonAgregarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarAtributoActionPerformed
