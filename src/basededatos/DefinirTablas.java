@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 public class DefinirTablas extends javax.swing.JFrame {
 
     String nombreDeTabla;
+    manejoDeArchivos manejo = new manejoDeArchivos();
+
     /**
      * Creates new form DefinirTablas
      */
@@ -167,7 +169,6 @@ public class DefinirTablas extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nuevoArchivo;
         nombreDeTabla = String.valueOf(textNombreTabla.getText());
-        manejoDeArchivos manejo = new manejoDeArchivos();
         manejo.asignarCrearTabla(nombreDeTabla, labelNombreDeLaTabla);
     }//GEN-LAST:event_botonAsignarNombreTablaActionPerformed
 
@@ -181,14 +182,7 @@ public class DefinirTablas extends javax.swing.JFrame {
         tipoDeDato = String.valueOf(textTipoDeDato.getText())+"@";
         tamañoDelDato = String.valueOf(textTamañoDelDato.getText())+"@@";
         
-        try {
-            File archivo = new File("/home/lio/Code/BasesDeDatos/"+nombreDeTabla+".txt");
-            FileWriter escribir = new FileWriter(archivo, true);
-            escribir.write(atributo+tipoDeDato+tamañoDelDato);
-            escribir.close();
-        } catch (IOException ex) {
-            Logger.getLogger(DefinirTablas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        manejo.agregarAtributo(nombreDeTabla, atributo, tipoDeDato, tamañoDelDato);
     }//GEN-LAST:event_botonAgregarAtributoActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
