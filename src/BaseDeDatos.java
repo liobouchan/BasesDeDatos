@@ -44,63 +44,43 @@ public class BaseDeDatos {
         definir.setVisible(true);
         final JFrame frame = new JFrame("CargarDatos");
         frame.setLayout(new GridLayout(0, 1));
-        
-        frame.add(new JButton(new AbstractAction("Cargar") {
+
+        frame.add(new JButton(new AbstractAction("Cargar Artículo") {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String Alumno = "Articulo";
-                        manejo.generarFormulario(Alumno, frame, arregloTexts);
-                        /*
-                        String primerLinea;
-                        String palabraActual;
-                        int tokens=0;
-                        int atributoCounter = 0;
-                        String atributo;
-                        String tipo;
-                        String tamaño;
-
-                        try {
-                            // TODO add your handling code here:
-                            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Alumno.txt"));
-                            primerLinea = bufferedReader.readLine();
-            
-                            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
-                            while (stringTokenizer.hasMoreTokens()){
-                                if(tokens == 0){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    atributo = palabraActual;
-                                    JLabel label = new JLabel(atributo);
-                                    JTextField textField = new JTextField(atributo);
-                                    textField.setName(atributo);
-                                    arregloTexts[atributoCounter] = textField;
-                                    frame.add(label);
-                                    frame.add(textField);
-                                    frame.revalidate();
-                                    frame.repaint();
-                                    frame.pack();
-                                }if(tokens == 1){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    tipo = palabraActual;
-                                }if(tokens == 2){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    tamaño = palabraActual;
-                                    tokens = -1;
-                                }
-                                tokens++;
-                                atributoCounter++;
-                            }
-            
-                        }catch (FileNotFoundException ex) {
-                            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        }catch (IOException ex) {
-                            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        }*/
+                        String archivo = "Articulo";
+                        manejo.generarFormulario(archivo, frame, arregloTexts);
                     }
                 });
             }
         }));
+
+        frame.add(new JButton(new AbstractAction("Cargar Vendedor") {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String archivo = "Vendedor";
+                        manejo.generarFormulario(archivo, frame, arregloTexts);
+                    }
+                });
+            }
+        }));
+        
+        frame.add(new JButton(new AbstractAction("Cargar Ventas") {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String archivo = "Ventas";
+                        manejo.generarFormulario(archivo, frame, arregloTexts);
+                    }
+                });
+            }
+        }));
+
         frame.add(new JButton(new AbstractAction("Guardar"){
             public void actionPerformed(ActionEvent e){
                 SwingUtilities.invokeLater(new Runnable() {
@@ -118,7 +98,7 @@ public class BaseDeDatos {
                         String contenidoDelArreglo = "";
                         System.out.println(arregloTexts[atributoCounter].getText());
                         try{
-                        for(int i=0 ; i<=10000; i++){
+                        for(int i=0 ; i<=100; i++){
                             if(arregloTexts[i] != null){
                                 contenidoDelArreglo = arregloTexts[i].getText() + "@";
                                 File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
