@@ -1,7 +1,9 @@
 import basededatos.AgregarValores;
 import basededatos.DefinirTablas;
+import basededatos.SoloInts;
+import basededatos.SoloLetras;
+import basededatos.manejoDeArchivos;
 import java.awt.GridLayout;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,10 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,10 +38,11 @@ public class BaseDeDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        final manejoDeArchivos manejo = new manejoDeArchivos();
         final JTextField[] arregloTexts = new JTextField[10000] ;
         DefinirTablas definir = new DefinirTablas();
         definir.setVisible(true);
-        final JFrame frame = new JFrame("Test");
+        final JFrame frame = new JFrame("CargarDatos");
         frame.setLayout(new GridLayout(0, 1));
         
         frame.add(new JButton(new AbstractAction("Cargar") {
@@ -51,11 +50,13 @@ public class BaseDeDatos {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
+                        String Alumno = "Articulo";
+                        manejo.generarFormulario(Alumno, frame, arregloTexts);
+                        /*
                         String primerLinea;
                         String palabraActual;
                         int tokens=0;
                         int atributoCounter = 0;
-                        int n = 50;
                         String atributo;
                         String tipo;
                         String tamaño;
@@ -71,45 +72,31 @@ public class BaseDeDatos {
                                     palabraActual = stringTokenizer.nextToken();
                                     atributo = palabraActual;
                                     JLabel label = new JLabel(atributo);
-                                    /*
-                                    JTextField textField[] = new JTextField[n];
-                                    textField[atributoCounter] = new JTextField();
-                                    textField[atributoCounter].setText(atributo);
-                                    */
                                     JTextField textField = new JTextField(atributo);
                                     textField.setName(atributo);
                                     arregloTexts[atributoCounter] = textField;
-
-                                    System.out.println(arregloTexts[atributoCounter].getName());
                                     frame.add(label);
-                                    //frame.add(textField[atributoCounter]);
                                     frame.add(textField);
                                     frame.revalidate();
                                     frame.repaint();
                                     frame.pack();
-                                    //String s1 = "labelAtributo"+atributoCounter;
-                                    //System.out.println("Atributo"+atributo+atributoCounter);
-                                    //atributoCounter ++;
-                    
                                 }if(tokens == 1){
                                     palabraActual = stringTokenizer.nextToken();
                                     tipo = palabraActual;
-                                    //System.out.println("Tipo"+tipo);
                                 }if(tokens == 2){
                                     palabraActual = stringTokenizer.nextToken();
                                     tamaño = palabraActual;
-                                    //System.out.println("Tam"+tamaño);
                                     tokens = -1;
                                 }
                                 tokens++;
                                 atributoCounter++;
                             }
             
-                        } catch (FileNotFoundException ex) {
+                        }catch (FileNotFoundException ex) {
                             Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
+                        }catch (IOException ex) {
                             Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        }*/
                     }
                 });
             }
@@ -143,47 +130,6 @@ public class BaseDeDatos {
                         } catch (IOException ex) {
                             Logger.getLogger(BaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                /*
-                        try {
-                            // TODO add your handling code here:
-                            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/Alumno.txt"));
-                            primerLinea = bufferedReader.readLine();
-            
-                            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
-                            while (stringTokenizer.hasMoreTokens()){
-                                if(tokens == 0){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    atributo = palabraActual;
-                                    //JTextField textField = new JTextField();
-                                    //textField.setName(atributo);
-                                    //String s1 = String.valueOf(textField.getText())+"@";
-                                    //System.out.println("Atributo"+atributo+atributoCounter);
-                                    //System.out.println(s1);
-                                    System.out.println(arregloTexts[atributoCounter].getText());
-                                    //File archivo = new File("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt");
-                                    //FileWriter escribir = new FileWriter(archivo, true);
-                                    //escribir.write(s1);
-                                    //escribir.close();
-                                    atributoCounter ++;
-                    
-                                }if(tokens == 1){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    tipo = palabraActual;
-                                    //System.out.println("Tipo"+tipo);
-                                }if(tokens == 2){
-                                    palabraActual = stringTokenizer.nextToken();
-                                    tamaño = palabraActual;
-                                    //System.out.println("Tam"+tamaño);
-                                    tokens = -1;
-                                }
-                                tokens++;
-                            }
-            
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-                        }*/
                     }
                 });
             }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -92,5 +93,51 @@ public class manejoDeArchivos {
         } catch (IOException ex) {
             Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
         }   
+    }
+    
+    public void generarFormulario(String archivo , JFrame frame, JTextField[] arregloTexts){
+        String primerLinea;
+        String palabraActual;
+        int tokens = 0;
+        int atributoCounter = 0;
+        String atributo;
+        String tipo;
+        String tamaño;
+
+        try{
+            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/"+archivo+".txt"));
+            primerLinea = bufferedReader.readLine();
+            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
+            
+            while (stringTokenizer.hasMoreTokens()){
+                if(tokens == 0){
+                    palabraActual = stringTokenizer.nextToken();
+                    atributo = palabraActual;
+                    JLabel label = new JLabel(atributo);
+                    JTextField textField = new JTextField(atributo);
+                
+                    textField.setName(atributo);
+                    arregloTexts[atributoCounter] = textField;
+                    frame.add(label);
+                    frame.add(textField);
+                    frame.revalidate();
+                    frame.repaint();
+                    frame.pack();
+                }if(tokens == 1){
+                    palabraActual = stringTokenizer.nextToken();
+                    tipo = palabraActual;
+                }if(tokens == 2){
+                    palabraActual = stringTokenizer.nextToken();
+                    tamaño = palabraActual;
+                    tokens = -1;
+                }
+                tokens++;
+                atributoCounter++;
+            }
+            }catch (FileNotFoundException ex) {
+                Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (IOException ex) {
+                Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 }
