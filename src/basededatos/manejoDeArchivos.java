@@ -2,12 +2,18 @@ package basededatos;
 
 
 import basededatos.DefinirTablas;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -50,5 +56,41 @@ public class manejoDeArchivos {
             Logger.getLogger(DefinirTablas.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al agregar " + atributo);
         }
+    }
+
+    public void leerArchivoCompleto(JTextArea textDatos){
+        String primerLinea;
+        String palabraActual;
+        String contenidoDelArreglo = "";
+        int tokens=0;
+
+
+        try {
+            // TODO add your handling code here:
+            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/a.txt"));
+            primerLinea = bufferedReader.readLine();
+            
+            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
+            String[] datos = new String[100000];
+            while (stringTokenizer.hasMoreTokens()){
+                palabraActual = String.valueOf(stringTokenizer.nextToken());
+                datos[tokens] = palabraActual;
+                tokens++;
+            //System.out.println ("    Palabra " + tokens + " es: " + s2);
+            }
+            for(int i=0 ; i<=tokens; i++){
+                if(datos[i] != null){
+                    contenidoDelArreglo += datos[i] + ",";
+                    textDatos.setText(contenidoDelArreglo);
+                    System.out.println(datos[i]);
+                }
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
+        }   
     }
 }

@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  * @author lio
  */
 public class AgregarValores extends javax.swing.JFrame {
-
+    manejoDeArchivos manejo = new manejoDeArchivos();
     String atributo;
     String tipo;
     String tamaño;
@@ -217,39 +217,7 @@ public class AgregarValores extends javax.swing.JFrame {
 
     private void botonLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLeerActionPerformed
         // TODO add your handling code here:
-        String primerLinea;
-        String palabraActual;
-        String contenidoDelArreglo = "";
-        int tokens=0;
-
-
-        try {
-            // TODO add your handling code here:
-            BufferedReader bufferedReader = new BufferedReader (new FileReader ("/home/lio/Code/BasesDeDatos/AlumnoDatos.txt"));
-            primerLinea = bufferedReader.readLine();
-            
-            StringTokenizer stringTokenizer = new StringTokenizer(primerLinea, "@");
-            String[] datos = new String[100000];
-            while (stringTokenizer.hasMoreTokens()){
-                palabraActual = String.valueOf(stringTokenizer.nextToken());
-                datos[tokens] = palabraActual;
-                tokens++;
-            //System.out.println ("    Palabra " + tokens + " es: " + s2);
-            }
-            for(int i=0 ; i<=tokens; i++){
-                if(datos[i] != null){
-                    contenidoDelArreglo += datos[i] + ",";
-                    textDatos.setText(contenidoDelArreglo);
-                    System.out.println(datos[i]);
-                }
-            }
-            
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarValores.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        manejo.leerArchivoCompleto(textDatos);
     }//GEN-LAST:event_botonLeerActionPerformed
 
     /**
